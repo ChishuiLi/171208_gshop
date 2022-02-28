@@ -18,9 +18,10 @@ export default {
     //this.$store.dispatch('getAddress')
     //this.$store.dispatch('getShops')
     this.getAddress()
+    this.getUserInfo()
   },
   methods:{
-    ...mapActions(['getAddress'])
+    ...mapActions(['getAddress','getUserInfo'])
   }
 }
 </script>

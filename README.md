@@ -18,3 +18,12 @@ npm i vuex@3
 #const和let
 const声明只读变量，不能修改
 let声明的变量只在let的代码块中有效
+
+#引入miti-ui
+引入时将"es2015"改为"@babel/preset-env"
+"plugins": [["component", [//去掉此处的[]，即可正常运行
+{
+"libraryName": "mint-ui",
+"style": true
+}
+]]]

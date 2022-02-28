@@ -2,14 +2,15 @@
 import {
     reqPosition,
     reqFoodCategorys,
-    reqShops
+    reqShops,
+    reqUserInfo
 } from '../api/index'
 import {
     RECEIVE_ADDRESS,
     RECEIVE_CATEGORYS,
     RECEIVE_SHOPS,
-    /*RECEIVE_USER_INFO,
-    RESET_USER_INFO,
+    RECEIVE_USER_INFO,
+    /*RESET_USER_INFO,
 
     RECEIVE_SEARCH_SHOPS,
 
@@ -45,6 +46,7 @@ export default {
         }
 
     },
+    //获取商品
     async getShops({commit,state}){
         //发送异步ajax请求
         const {longitude, latitude} = state
@@ -55,5 +57,24 @@ export default {
             commit(RECEIVE_SHOPS,{shops})
         }
 
-    }
+    },
+    //同步记录用户信息
+    recordUser({commit},userInfo){
+        commit(RECEIVE_USER_INFO,{userInfo})
+    },
+
+    //异步获取用户信息
+    async getUserInfo({commit}){
+        const result = await reqUserInfo()
+        if(result.code === 0){
+            const userInfo = result.data
+            commit(RECEIVE_USER_INFO, {userInfo})
+        }
+    },
+
+    //重置用户信息（退出登录）
+    //resetUserInfo({commit}){
+    //    const userInfo = {}
+    //    commit(RESET_USER_INFO,{userInfo})
+    //}
 }

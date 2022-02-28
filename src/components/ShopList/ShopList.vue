@@ -4,7 +4,10 @@
       <li class="shop_li border-1px" style="list-style-type: none" v-for="(shop,index) in shops" :key="index">
         <a>
           <div class="shop_left">
+            <!--
             <img class="shop_img" :src="baseImgUrl + shop.image_path">
+            -->
+            <img class="shop_img" src="./images/1.jpg" >
           </div>
           <div class="shop_right">
             <section class="shop_detail_header">
@@ -55,7 +58,7 @@ export default {
   name: "ShopList",
   data(){
     return{
-      baseImgUrl:'http://cangdu.org:8001/img/'
+      //baseImgUrl:'http://cangdu.org:8001/img/'
     }
   },
   computed:{
