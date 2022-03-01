@@ -27,3 +27,5 @@ let声明的变量只在let的代码块中有效
 "style": true
 }
 ]]]
+#点击回车提交表单
+在<from>标签中添加 @keydown.enter="login"

@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="login_content">
-        <form @submit.prevent="login">
+        <form @submit.prevent="login" @keydown.enter="login">
           <div :class="{on:loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">

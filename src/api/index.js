@@ -33,10 +33,10 @@ export const reqUserInfo = () => ajax(BASE_URL + '/userinfo')
 export const reqLogOut = () => ajax(BASE_URL + '/logout')
 
 // 获取商品
-export const reqShopGoods = () => ajax('/shop_goods')
+export const reqShopGoods = () => ajax('/goods')
 
 // 获取评价
-export const reqShopRatings = () => ajax('/shop_ratings')
+export const reqShopRatings = () => ajax('/ratings')
 
 // 获取商家信息
-export const reqShopInfo = () => ajax('/shop_info')
+export const reqShopInfo = () => ajax('/info')

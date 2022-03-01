@@ -89,7 +89,7 @@
       </a>
     </section>
     <section class="profile_my_order border-1px">
-      <mt-button type="danger">退出登录</mt-button>
+      <mt-button type="danger" style="width: 100%" v-if="userInfo._id" @click="logout">退出登录</mt-button>
     </section>
 
   </section>
@@ -98,7 +98,8 @@
 
 <script>
 import HeaderTop from "@/components/HeaderTop/HeaderTop";
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapActions} from 'vuex'
+import { MessageBox,Toast } from 'mint-ui';
 export default {
   name: "Profile",
   components:{
@@ -108,9 +109,23 @@ export default {
     ...mapState(['userInfo'])
   },
   methods:{
-    ...mapMutations(['']),
-    login_out(){
-
+    ...mapActions(['logOut']),
+    logout(){
+      MessageBox.confirm('确认退出').then(
+          action => {
+            //点击确定的回调
+            this.logOut()
+            Toast({
+              message: '成功退出',
+              position: 'bottom',
+              duration: 3000
+            });
+          },
+          action => {
+            //点击取消的回调
+            console.log('点击取消了')
+          }
+          );
     }
   }
 }
