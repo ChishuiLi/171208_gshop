@@ -30,7 +30,7 @@ export default {
   left 0
   top 0
   width 100%
-  height 45px
+  height 50px
   .header_search
     position absolute
     left 15px

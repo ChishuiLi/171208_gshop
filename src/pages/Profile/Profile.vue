@@ -137,7 +137,7 @@ export default {
   width 100%
   overflow hidden
   .profile-number
-    margin-top 45.5px
+    margin-top 45px
     .profile-link
       clearFix()
       position relative

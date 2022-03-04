@@ -20,11 +20,11 @@ import {
     RECEIVE_RATINGS,
     RECEIVE_INFO,
 
-    /*RECEIVE_SEARCH_SHOPS,
+    /*RECEIVE_SEARCH_SHOPS,*/
 
     DECREMENT_FOOD_COUNT,
     INCREMENT_FOOD_COUNT,
-    CLEAR_CART,*/
+    /*CLEAR_CART*/
 } from "./mutations-types"
 export default {
     //异步获取地址
@@ -86,11 +86,13 @@ export default {
     },
 
     //异步获取商家列表
-    async getShopGoods({commit}){
+    async getShopGoods({commit},callback){
         const result = await reqShopGoods()
         if(result.code === 0){
             const goods = result.data
             commit(RECEIVE_GOODS,{goods})
+            //数据更新，通知组件
+            callback && callback()
         }
     },
 
@@ -109,6 +111,15 @@ export default {
         if(result.code === 0){
             const info = result.data
             commit(RECEIVE_INFO,{info})
+        }
+    },
+
+    //同步更新food中的count值
+    updateFoodCount({commit},{isAdd,food}){
+        if(isAdd){
+            commit(INCREMENT_FOOD_COUNT,{food})
+        }else{
+            commit(DECREMENT_FOOD_COUNT,{food})
         }
     }
 }
