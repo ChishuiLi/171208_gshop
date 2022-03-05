@@ -18,23 +18,26 @@
           </div>
         </div>
       </div>
-      <div class="shopcart-list" v-show="isShow">
-        <div class="list-header">
-          <h1 class="title">购物车</h1>
-          <span class="empty">清空</span>
+      <transition name="move">
+        <div class="shopcart-list" v-show="isShow">
+          <div class="list-header">
+            <h1 class="title">购物车</h1>
+            <span class="empty" @click="clearCart">清空购物车</span>
+          </div>
+          <div class="list-content">
+            <ul style="margin:0px;padding: 0px">
+              <li class="food" v-for="(food,index) in cartFoods" :key="index" style="list-style: none">
+                <span class="name">{{food.name}}</span>
+                <div class="price"><span>￥{{food.price}}</span></div>
+                <div class="cartcontrol-wrapper">
+                  <CartControl :food="food"/>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="list-content">
-          <ul style="margin:0px;padding: 0px">
-            <li class="food" v-for="(food,index) in cartFoods" :key="index" style="list-style: none">
-              <span class="name">{{food.name}}</span>
-              <div class="price"><span>￥{{food.price}}</span></div>
-              <div class="cartcontrol-wrapper">
-                <CartControl :food="food"/>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </transition>
+
     </div>
     <div class="list-mask" v-show="isShow" @click="toggleShow"></div>
   </div>
@@ -43,7 +46,8 @@
 <script>
 import {mapState,mapGetters} from 'vuex'
 import CartControl from "@/components/CartControl/CartControl";
-import { Toast } from 'mint-ui';
+import { MessageBox,Toast } from 'mint-ui';
+import BScroll from '@better-scroll/core'
 export default {
   name: "ShopCart",
   components:{
@@ -84,10 +88,16 @@ export default {
           position: 'bottom',
           duration: 1500
         });
+        console.log('执行了Toast')
       }
       else{
         this.isShow = !this.isShow
       }
+    },
+    clearCart(){
+      MessageBox.confirm('确定清空购物车吗？').then(action => {
+        this.$store.dispatch('clearCart')
+      });
     }
   },
   watch:{
@@ -109,6 +119,23 @@ export default {
         //当totalCount=0时，改变isShow的值
         if(newValue === 0){
           this.isShow = false
+        }
+      }
+    },
+    isShow:{
+      handler(newValue,oldValue){
+        if(newValue){
+          this.$nextTick(()=>{
+            //实现BScroll的实例是一个单例子
+            if(!this.scroll){
+              this.scroll = new BScroll('.list-content',{
+                click:true
+              })
+            }else{
+              this.scroll.refresh() //让滚动条刷新一下：重新统计内容高度
+            }
+
+          })
         }
       }
     }
@@ -231,7 +258,6 @@ export default {
       transform translateY(0)
     .list-header
       height 40px
-      //line-height 40px
       padding 0 18px
       background #f3f5f7
       border-bottom 1px solid rgba(7, 17, 27, 0.1)
@@ -241,7 +267,7 @@ export default {
         color rgb(7, 17, 27)
       .empty
         float right
-        font-size 12px
+        font-size 14px
         color rgb(0, 160, 220)
     .list-content
       width: 100%;

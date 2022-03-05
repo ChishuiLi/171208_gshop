@@ -13,8 +13,11 @@
       </div>
 
     </div>
+    <!-- 路由缓存 -->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
 
-    <router-view/>
   </div>
 </template>
 

@@ -35,8 +35,8 @@ export default {
         state.userInfo = {}
     },
 
-    [RECEIVE_SEARCH_SHOPS](state,{searchShop}){
-        state.searchShop = searchShop
+    [RECEIVE_SEARCH_SHOPS](state,{searchShops}){
+        state.searchShops = searchShops
     },
 
     [RECEIVE_GOODS](state,{goods}){

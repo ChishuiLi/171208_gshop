@@ -53,3 +53,15 @@ Array.prototype.slice.call (arguments)能将具有length属性的对象转成数
 在已经有数据绑定的数据中添加新的数据，用Vue.set(对象,'属性名',数据)
 
 实现滑动使用了第三方库 better-scroll
+
+使用mint-ui后，开始组件能正常显示，但一段时间后mint-ui组件失效，不知道原因
+解决：在main.js文件中引入  import '../node_modules/mint-ui/lib/style.css'
+或者是在任意组件引入 node_modules/mint-ui/lib/style.css'
+
+mintui在使用初期并没有什么错，但是随着后面代码数量的增加，mintui总是会出错，不知道什么是原因
+每次的错误信息是不能解析mintui的标签，但是已经按需引入了，并且引入了style.css文件，也不行
+最后一次实在没办法就选择了全局引入，然后界面能正常显示，之后再修改为按需引入，模板能正常解析，
+所以开始遇到的问题应该不是缺少能解析标签css，也许是mintui的内部问题。
+
+##这个外卖项目算是基本完成，用了8天多的事件，跟着视频走，巩固了vue的基本知识，很多地方不会的也都找到了答案，
+在遇到报错时的解决问题能力也增加了很多。

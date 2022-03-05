@@ -9,7 +9,7 @@ export default {
     shops: [], //商家数组
     userInfo:{},//用户信息
 
-    searchShop:[],//搜索得到的商家数组
+    searchShops:[],//搜索得到的商家数组
 
     goods:[],//商品信息
     ratings: [], // 商家评价列表
