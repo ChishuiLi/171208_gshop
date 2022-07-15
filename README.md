@@ -1,7 +1,7 @@
 ##Git报错：OpenSSL SSL_read: Connection was reset, errno 10054
 git config --global http.sslVerify "false"
 
-#VUE在2022年2月7日默认版本已经更新到vue3，随之vue-router和vuex版本也发生了变化，在vue2中之恶能使用3版本的vue-router和vuex
+#VUE在2022年2月7日默认版本已经更新到vue3，随之vue-router和vuex版本也发生了变化，在vue2中只能使用3版本的vue-router和vuex
 #vue-router
 2022年2月7日后vue-router默认版本改为4，4版本只能再vue3中使用，在vue2中使用vue3
 安装命令
